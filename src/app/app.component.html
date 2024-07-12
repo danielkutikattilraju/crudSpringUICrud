@@ -1,0 +1,36 @@
+<div class="wrapper">
+  <div class="container"  *ngIf="(!floaterVisible && !floaterVisibleAdd)" >
+    <div class="student-id section">Student ID</div>
+    <div class="student-name section">Studetn Name</div>
+    <div class="student-class section">Student Age</div>
+    <div class="student-actions section">Action  <button class="add" (click)="add()">+</button> </div>
+  </div>
+  <ng-container *ngIf="(!floaterVisible && !floaterVisibleAdd)">
+  <div *ngFor="let std of students" class="container">
+    <div class="student-id section"><div class="id-width" [title]="std.sid">{{std.sid}}</div></div>
+    <div class="student-name section">{{std.sname}}</div>
+    <div class="student-class section">{{std.sclass}}</div>
+    <div class="student-actions section">
+      <input class="update" (click)="getDataById(std.sid)" type="button" value="Update">
+      <input class="delete" (click)="deleteData(std.sid)" type="button" value="Delete">
+    </div>
+  </div>
+</ng-container>
+
+</div>
+<div class="floater" *ngIf="floaterVisible">
+  <div class="wrapper-dialog">
+    <button class="close" (click)="close()">X</button>
+    <div class="student-name section"><input class="styled-input" type="text"  [(ngModel)]="name"></div>
+    <div class="student-class section"><input class="styled-input" type="text"  [(ngModel)]="class"></div>
+    <div class="student-actions section"><input (click)="updateData()" class="update" type="button" value="Update"></div>
+  </div>
+</div>
+<div class="floater" *ngIf="floaterVisibleAdd">
+  <div class="wrapper-dialog">
+    <button class="close" (click)="closeAdd()">X</button>
+    <div class="student-name section"><input class="styled-input" type="text" placeholder="Enter Name"  [(ngModel)]="name"></div>
+    <div class="student-class section"><input class="styled-input" type="text" placeholder="Enter Age"  [(ngModel)]="class"></div>
+    <div class="student-actions section"><input (click)="addData()" class="update" type="button" value="Update"></div>
+  </div>
+</div>
